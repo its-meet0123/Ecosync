@@ -22,8 +22,8 @@ Ecosync is a full-stack carbon footprint assistant that helps users estimate the
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/its-meet0123/Ecosync-backend.git
-   cd Ecosync-backend/ecosync-backend
+   git clone https://github.com/its-meet0123/Ecosync.git
+   cd Ecosync/ecosync-backend
    ```
 
 2. **Install dependencies**
