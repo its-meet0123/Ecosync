@@ -4,7 +4,7 @@ Ecosync is a full-stack carbon footprint assistant that helps users estimate the
 
 ## 🚀 Features
 
-- **AI-Powered Analysis**: Uses Google's Gemini 1.5 Flash model for intelligent carbon footprint calculations
+- **AI-Powered Analysis**: Uses Google's Gemini Flash latest model for intelligent carbon footprint calculations
 - **Full-stack Interface**: Includes a React-based frontend for activity submission and result display
 - **RESTful Backend**: Simple POST endpoint for activity analysis
 - **CORS Enabled**: Supports frontend integration from `http://127.0.0.1:5173`
@@ -15,7 +15,7 @@ Ecosync is a full-stack carbon footprint assistant that helps users estimate the
 
 - **Frontend**: React, Vite, Ant Design, Axios
 - **Backend**: Node.js, Express, dotenv, CORS
-- **AI**: Google Generative AI (Gemini 1.5 Flash)
+- **AI**: Google Generative AI (Gemini Flash latest)
 - **Package Manager**: npm
 
 ## 📦 Installation
