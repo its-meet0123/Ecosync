@@ -1,21 +1,21 @@
-# Ecosync Backend
+# Ecosync
 
-A Node.js backend service that analyzes carbon footprints of user activities using Google's Gemini AI. This service provides environmental impact assessments to help users make more sustainable choices.
+Ecosync is a full-stack carbon footprint assistant that helps users estimate the environmental impact of everyday activities. It combines a React/Vite frontend with a Node.js/Express backend, and uses Google Gemini AI to generate structured carbon footprint insights and eco-friendly recommendations.
 
 ## 🚀 Features
 
 - **AI-Powered Analysis**: Uses Google's Gemini 1.5 Flash model for intelligent carbon footprint calculations
-- **RESTful API**: Simple POST endpoint for activity analysis
-- **CORS Enabled**: Supports cross-origin requests for frontend integration
+- **Full-stack Interface**: Includes a React-based frontend for activity submission and result display
+- **RESTful Backend**: Simple POST endpoint for activity analysis
+- **CORS Enabled**: Supports frontend integration from `http://127.0.0.1:5173`
 - **Environment Configuration**: Secure API key management with dotenv
 - **JSON Responses**: Structured data output with carbon values, impact levels, and eco-tips
 
 ## 🛠 Tech Stack
 
-- **Runtime**: Node.js
-- **Framework**: Express.js
-- **AI Model**: Google Generative AI (Gemini 1.5 Flash)
-- **Security**: CORS, environment variables
+- **Frontend**: React, Vite, Ant Design, Axios
+- **Backend**: Node.js, Express, dotenv, CORS
+- **AI**: Google Generative AI (Gemini 1.5 Flash)
 - **Package Manager**: npm
 
 ## 📦 Installation
