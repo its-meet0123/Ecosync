@@ -1,36 +1,50 @@
 const express = require('express');
 const cors = require('cors');
+const axios = require('axios');
+//const { GoogleGenerativeAI } = require('@google/generative-ai');
 require('dotenv').config();
-const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const app = express();
-app.use(cors());
+
+// CORS configuration for frontend
+const corsOptions = {
+  origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
+  credentials: true,
+  optionSuccessStatus: 200
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const API_KEY = process.env.GEMINI_API_KEY;
+// Latest Stable v1 Endpoint
+const GOOGLE_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${API_KEY}`;
 
 app.post('/api/analyze', async (req, res) => {
   try {
     const { activity } = req.body;
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-    const prompt = `User activity: "${activity}". 
-    Analyze the carbon footprint of this activity. 
-    Return a JSON response with:
-    1. "carbonValue" (estimated kg of CO2 as a number)
-    2. "impact" (High, Medium, Low)
-    3. "tip" (A short eco-friendly alternative tip).
-    Strictly return only JSON.`;
+    const payload = {
+      contents: [{
+        parts: [{
+          text: `Analyze activity: "${activity}". Return strictly JSON: {"carbonValue": number, "impact": "High/Low", "tip": "string"}. No extra text.`
+        }]
+      }]
+    };
 
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const text = response.text();
+    const response = await axios.post(GOOGLE_API_URL, payload, {
+      headers: { 'Content-Type': 'application/json' }
+    });
+
+    // Google API se text nikalna
+    const aiText = response.data.candidates[0].content.parts[0].text;
     
-    // JSON clean up for safety
-    const cleanJson = text.replace(/```json|```/g, "");
+    // JSON Clean up
+    const cleanJson = aiText.replace(/```json|```/g, "").trim();
     res.json(JSON.parse(cleanJson));
+
   } catch (error) {
-    res.status(500).json({ error: "AI analysis failed" });
+    console.error("API ERROR:", error.response ? error.response.data : error.message);
+    res.status(500).json({ error: "API connection failed", details: error.message });
   }
 });
 
